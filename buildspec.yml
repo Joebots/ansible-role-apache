@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Install prereqs...
+      - pip install molecule flake8
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Executing Molecule lint...
+      - molecule lint
+      - echo Executing Molecule create...
+      - molecule create
+      - echo Executing Molecule converge...
+      - molecule converge
+      - echo Executing Molecule idemotence...
+      - molecule idemotence
+      - echo Executing Molecule verify...
+      - molecule verify
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
